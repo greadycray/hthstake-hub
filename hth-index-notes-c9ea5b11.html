@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>索引与整理 — hth 资料札记</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f2f6f9;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            line-height: 1.7;
+            color: #1e2b3a;
+            padding: 2rem 1rem;
+        }
+
+        .container {
+            max-width: 880px;
+            margin: 0 auto;
+        }
+
+        /* 头部 / 导语卡片 */
+        .hero-card {
+            background: #ffffffec;
+            backdrop-filter: blur(2px);
+            border-radius: 32px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 8px 18px rgba(0, 30, 40, 0.06);
+            border: 1px solid rgba(0, 150, 140, 0.12);
+        }
+
+        .hero-card h1 {
+            font-size: 2.2rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            color: #0a2e38;
+            margin-bottom: 0.3rem;
+        }
+
+        .hero-card .sub {
+            color: #3f6a78;
+            font-size: 1.1rem;
+            font-weight: 380;
+            border-left: 4px solid #1b9a9a;
+            padding-left: 1rem;
+            margin: 0.8rem 0 0.2rem 0;
+        }
+
+        .hero-card .lead {
+            margin-top: 1.2rem;
+            font-size: 1.05rem;
+            color: #2d4c56;
+        }
+
+        .hero-card .lead a {
+            color: #147a7a;
+            text-decoration: none;
+            font-weight: 480;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s;
+        }
+
+        .hero-card .lead a:hover {
+            border-bottom-color: #1b9a9a;
+        }
+
+        /* 网格卡片区 */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2.8rem 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 24px;
+            padding: 1.8rem 1.4rem;
+            box-shadow: 0 4px 14px rgba(18, 60, 70, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.25s;
+            border: 1px solid #deeef0;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(18, 90, 90, 0.08);
+            border-color: #92cdcd;
+        }
+
+        .card h3 {
+            font-size: 1.25rem;
+            font-weight: 520;
+            color: #145f5f;
+            margin-bottom: 0.6rem;
+            letter-spacing: -0.01em;
+        }
+
+        .card p {
+            font-size: 0.96rem;
+            color: #2f4b53;
+        }
+
+        .card .tag {
+            display: inline-block;
+            background: #e3f2f0;
+            color: #14665e;
+            font-size: 0.7rem;
+            padding: 0.2rem 0.9rem;
+            border-radius: 40px;
+            margin-top: 0.8rem;
+            letter-spacing: 0.02em;
+            font-weight: 440;
+        }
+
+        /* 正文段落 */
+        .essay {
+            background: white;
+            border-radius: 28px;
+            padding: 2rem 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0, 40, 40, 0.02);
+        }
+
+        .essay h2 {
+            font-size: 1.7rem;
+            font-weight: 480;
+            color: #0f3a3a;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #ace0db;
+            padding-bottom: 0.3rem;
+            display: inline-block;
+        }
+
+        .essay p {
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        .essay .quote-line {
+            background: #e7f5f2;
+            border-left: 6px solid #299494;
+            padding: 1rem 1.4rem;
+            margin: 1.8rem 0;
+            border-radius: 0 20px 20px 0;
+            font-style: normal;
+            font-weight: 370;
+            color: #1a4a4a;
+        }
+
+        .essay .access-note {
+            background: #d9f0ed;
+            padding: 1.2rem 1.6rem;
+            border-radius: 40px;
+            color: #0e4747;
+            font-weight: 410;
+            margin: 2rem 0 0.2rem 0;
+            text-align: center;
+            font-size: 1.02rem;
+        }
+
+        .faq-mini {
+            margin-top: 2.8rem;
+            border-top: 1px dashed #b1cfcf;
+            padding-top: 1.8rem;
+        }
+
+        .faq-mini details {
+            margin-bottom: 1rem;
+            background: #f7fcfb;
+            border-radius: 40px;
+            padding: 0.2rem 1.2rem;
+            border: 1px solid #c8e2e0;
+        }
+
+        .faq-mini summary {
+            font-weight: 470;
+            color: #136161;
+            padding: 0.6rem 0;
+            cursor: pointer;
+        }
+
+        .faq-mini details p {
+            padding: 0.2rem 0 1rem 0;
+            font-size: 0.95rem;
+            color: #264f4f;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 4rem;
+            font-size: 0.85rem;
+            color: #597a7a;
+            border-top: 1px solid #d2e6e4;
+            padding-top: 2rem;
+        }
+
+        footer a {
+            color: #0f6b6b;
+            text-decoration: none;
+            border-bottom: 1px dotted #a0c8c8;
+        }
+
+        /* 移动端细节 */
+        @media (max-width: 540px) {
+            body { padding: 1rem 0.8rem; }
+            .hero-card { padding: 1.8rem 1.4rem; }
+            .hero-card h1 { font-size: 1.8rem; }
+            .grid { gap: 1rem; }
+            .essay { padding: 1.6rem 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- hero 卡片 -->
+        <div class="hero-card">
+            <h1>资料整理 · 信息索引</h1>
+            <div class="sub">从条目到脉络 — 保持轻量与有序</div>
+            <div class="lead">
+                在日常信息积累中，我们常常面对散落的链接与笔记。 
+                <a href="https://hth-index-huatihui.com">hth</a> 是一个以索引为思路的汇集点，
+                它不追求包罗万象，而是更关注结构、检索与回顾。
+            </div>
+        </div>
+
+        <!-- 网格卡片：三个侧面 -->
+        <div class="grid">
+            <div class="card">
+                <h3>索引而非收藏</h3>
+                <p>收藏往往意味着堆积，索引则意味着归类与锚点。用更轻的方式保留线索，需要时能沿着方向找到原文。</p>
+                <span class="tag">整理思路</span>
+            </div>
+            <div class="card">
+                <h3>上下文优先</h3>
+                <p>每一条记录都不应该孤立。在 <a href="https://hth-index-huatihui.com" style="color:#106f6f;text-decoration: underline 1px #79bcb6;">hth</a> 里，资料彼此关联，形成可翻阅的笔记流，而非扁平清单。</p>
+                <span class="tag">关联阅读</span>
+            </div>
+            <div class="card">
+                <h3>温和的节奏</h3>
+                <p>不追求每日更新，也不制造信息焦虑。积累是细水长流的事，按自己的步调翻阅、补充就好。</p>
+                <span class="tag">低压力</span>
+            </div>
+        </div>
+
+        <!-- 正文（多段） -->
+        <div class="essay">
+            <h2>从散落到有序</h2>
+            <p>大概两年前我开始留意自己保存书签和片段的方式。浏览器的收藏夹越来越长，但真正回头翻看的比例却很低。后来尝试用纯文本和简单的标题层级来整理，发现“分类”本身比工具重要。</p>
+            <p>任何索引都需要一个稳定的锚点。对我而言，<a href="https://hth-index-huatihui.com">hth</a> 恰好扮演了这个角色——它既是一个可直达的目录页，也是一个可以不断调整的分类节点。不需要复杂数据库，只要结构清晰、命名一致，就能在需要时准确定位。</p>
+            <div class="quote-line">
+                “整理的本质不是删除，而是让需要的信息在恰当的时候出现在视线里。”
+            </div>
+            <p>现在我会定期把零散笔记、文章链接、摘录按主题归入索引。不追求所有资料都被记住，而是相信索引本身会形成一种外部记忆。偶尔回看，还能发现当初没注意到的联系。</p>
+
+            <!-- 访问句 (自然嵌入) -->
+            <div class="access-note">
+                如果你也习惯以索引的方式梳理资料，不妨试试 <a href="https://hth-index-huatihui.com" style="color:#0d5e5e; font-weight:550;">hth</a> 的目录结构。
+            </div>
+
+            <!-- 迷你 FAQ 摘要 -->
+            <div class="faq-mini">
+                <details>
+                    <summary>这个索引页适合谁？</summary>
+                    <p>偏向个人或小团队进行资料归档、笔记索引、书签管理的人。不需要实时协作，但看重检索和翻阅体验。</p>
+                </details>
+                <details>
+                    <summary>索引页会频繁变化吗？</summary>
+                    <p>结构会随积累微调，但主要目录保持稳定。变化会记录在更新日志中，方便回溯。</p>
+                </details>
+            </div>
+        </div>
+
+        <!-- 结尾 -->
+        <footer>
+            <span>索引 · 整理 · 温和积累</span><br>
+            <span style="font-size: 0.8rem; opacity:0.7;">基于 <a href="https://hth-index-huatihui.com">hth</a> 的结构思路 · 非商业页面</span>
+        </footer>
+    </div>
+</body>
+</html>
